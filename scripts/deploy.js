@@ -57,7 +57,7 @@ const execWithCompressionSW = stage => () =>
 const execAllWithoutCompression = stage => () =>
   new Promise((resolve, reject) => {
     const url = getUrl(stage);
-    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --content-encoding=gzip --cache-control max-age=0`;
+    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --cache-control max-age=0`;
     return exec(command, (error, stdout, stderr) => {
       if (error) return reject(error);
       return resolve();
