@@ -6,7 +6,7 @@ export class Search extends React.Component {
   render() {
     return (
       <Container>
-        <Input placeholder="Paris, Lyon, Marseille..."/>
+        <Input placeholder="Paris, Lyon, Marseille..." label="search"/>
         <Button>Rechercher</Button>
       </Container>
     );

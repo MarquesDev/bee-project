@@ -19,7 +19,7 @@ export const Links = styled.a`
 `;
 
 export const Link = styled.a`
-  color: ${({ theme }) => theme.colors.grey[600]};
+  color: ${({ theme }) => theme.colors.grey[800]};
   text-decoration: none;
   font-size: 14px;
 `;
