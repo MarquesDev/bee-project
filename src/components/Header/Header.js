@@ -6,10 +6,8 @@ export class Header extends React.Component {
   render() {
     return (
       <Container>
-        <Logo>ALLO MAYA - Le blog</Logo>
+        <Logo>ALLO MAYA - BLOG</Logo>
       </Container>
     );
   }
 }
-
-

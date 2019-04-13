@@ -6,10 +6,10 @@ import React from 'react';
 import SEO from '../components/SEO';
 import get from 'lodash/get';
 import { Background } from '../components/Background';
+import { Footer } from '../components/Footer/Footer';
 import {
   Title,
   SubTitle,
-  Footer,
   Main,
   MainTitle,
   Header,

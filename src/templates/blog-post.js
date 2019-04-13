@@ -4,7 +4,6 @@ import get from 'lodash/get';
 
 import Layout from '../components/Layout/Layout';
 import SEO from '../components/SEO';
-import Signup from '../components/Signup';
 import Panel from '../components/Panel';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import {

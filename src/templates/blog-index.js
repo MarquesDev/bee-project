@@ -1,12 +1,13 @@
 import { Link, graphql } from 'gatsby';
-import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import { Background } from '../components/Background';
-import Footer from '../components/Footer';
 import Layout from '../components/Layout/Layout';
 import Panel from '../components/Panel';
 import React from 'react';
 import SEO from '../components/SEO';
 import { Typography } from '../components/Typography/Typography';
+import { Article, Main } from '../components/Blog';
+import { Header } from '../components/Header/Header';
+import { Footer } from '../components/Footer/Footer';
 import get from 'lodash/get';
 
 class BlogIndexTemplate extends React.Component {
@@ -18,33 +19,24 @@ class BlogIndexTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <Background color="grey">
           <SEO />
-          <main>
+          <Header />
+          <Main>
             {posts.map(({ node }) => {
               const title = node.frontmatter.title || node.fields.slug;
               return (
-                <article key={node.fields.slug}>
-                  <header>
-                    <Typography as="h3" type="title" variant="3">
-                      <Link to={node.fields.slug} rel="bookmark">
-                        {title}
-                      </Link>
-                    </Typography>
-                    <Typography type="small">
-                      {formatPostDate(node.frontmatter.date, 'fr')}
-                      {` • ${formatReadingTime(node.timeToRead)}`}
-                    </Typography>
-                  </header>
-                  <Typography
-                    as="p"
-                    dangerouslySetInnerHTML={{
-                      __html: node.frontmatter.spoiler,
-                    }}
-                  />
-                </article>
+                <Article
+                  key={node.fields.slug}
+                  date={node.frontmatter.date}
+                  timeToRead={node.timeToRead}
+                  subTitle={node.frontmatter.spoiler}
+                  title={title}
+                  href={node.fields.slug}
+                />
               );
             })}
-          </main>
+          </Main>
         </Background>
+        <Footer posts={posts} />
       </Layout>
     );
   }
