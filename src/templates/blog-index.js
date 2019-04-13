@@ -16,7 +16,7 @@ class BlogIndexTemplate extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout>
         <Background color="grey">
           <SEO />
           <Header />

@@ -1,12 +1,15 @@
 import React from 'react';
 import { get } from 'lodash';
-import { Container, Logo, Links, Link } from './Header.sc';
+import { Container, Logo } from './Header.sc';
+import { Link } from 'gatsby';
 
 export class Header extends React.Component {
   render() {
     return (
       <Container>
-        <Logo>ALLO MAYA - BLOG</Logo>
+        <Link to="/">
+          <Logo>ALLO MAYA - BLOG</Logo>
+        </Link>
       </Container>
     );
   }
