@@ -2,10 +2,10 @@ module.exports = {
   siteMetadata: {
     title: 'Allo Maya',
     author: 'Kevin Marques',
-    description: 'Personal blog by Dan Abramov. I explain with words and code.',
+    description: 'Trouver un professionel de dératisation, désinsectisation...',
     siteUrl: 'https://www.allo-maya.fr',
     social: {
-      twitter: '@dan_abramov',
+      twitter: '',
     },
   },
   pathPrefix: '/',
