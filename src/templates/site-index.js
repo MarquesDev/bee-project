@@ -1,12 +1,20 @@
 import { Link, graphql } from 'gatsby';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
-import Footer from '../components/Home/Footer/Footer';
 import Layout from '../components/Layout/Layout';
 import Panel from '../components/Panel';
 import React from 'react';
 import SEO from '../components/SEO';
 import get from 'lodash/get';
-import Header from '../components/Home/Header/Header';
+import { Background } from '../components/Background';
+import {
+  Title,
+  SubTitle,
+  Footer,
+  Main,
+  MainTitle,
+  Header,
+  Search,
+} from '../components/Home';
 
 class SiteIndex extends React.Component {
   render() {
@@ -16,10 +24,16 @@ class SiteIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO />
-        <Header />
-        <main>
-          <Link to="/blog">Voir le blog</Link>
-        </main>
+        <Background color="grey">
+          <Main>
+            <Header />
+            <MainTitle>
+              <Title>Prenez un rendez-vous en ligne avec un professionel</Title>
+              <SubTitle>Il viendra enlever les nids pour vous</SubTitle>
+              <Search />
+            </MainTitle>
+          </Main>
+        </Background>
         <Footer posts={posts} />
       </Layout>
     );

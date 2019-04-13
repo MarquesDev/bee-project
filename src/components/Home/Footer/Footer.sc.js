@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.footer`
   width: 100%;
   display: flex;
-  border-top: 1px solid ${({ theme }) => theme.colors.grey[100]};
-  padding-top: 40px;
+  border-top: 1px solid ${({ theme }) => theme.colors.grey[200]};
+  padding: 40px 0;
 `;
 
 export const MiddleAlignment = styled.div`

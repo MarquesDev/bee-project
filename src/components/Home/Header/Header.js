@@ -2,17 +2,17 @@ import React from 'react';
 import { get } from 'lodash';
 import { Container, Logo, Links, Link } from './Header.sc';
 
-class Header extends React.Component {
+export class Header extends React.Component {
   render() {
     return (
       <Container>
-        <Logo>Allo Maya</Logo>
+        <Logo>ALLO MAYA</Logo>
         <Links>
-          <Link href="/blog">Voir le blog</Link>
+          <Link href="/blog">Blog</Link>
         </Links>
       </Container>
     );
   }
 }
 
-export default Header;
+

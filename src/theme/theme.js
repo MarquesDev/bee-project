@@ -1,12 +1,4 @@
-import { grey } from '@material-ui/core/colors';
-
-const colors = {
-  blue: {
-    500: '#3366BB',
-    600: '#285094',
-  },
-  grey,
-};
+import * as colors from '@material-ui/core/colors';
 
 const fonts = {
   family: {

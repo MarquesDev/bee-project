@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import get from 'lodash/get';
 
-import '../fonts/fonts-post.css';
 import Layout from '../components/Layout/Layout';
 import SEO from '../components/SEO';
 import Signup from '../components/Signup';

@@ -2,7 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import { Container, Column, Title, Link, MiddleAlignment } from './Footer.sc';
 
-class Footer extends React.Component {
+export class Footer extends React.Component {
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
