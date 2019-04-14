@@ -3,18 +3,34 @@ const Promise = require('bluebird');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { supportedLanguages } = require('./i18n');
-const enterprises = require('./src/assets/enterprises.json');
+const allEnterprises = require('./src/assets/enterprises.json');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js');
+    const getEnterprises = allEnterprises.slice(0, 10);
+    const getSlug = enterprise => {
+      const parseName = enterprise.name
+        .split(' ')
+        .join('-')
+        .split('.')
+        .join('')
+        .toLowerCase();
+      return `/entreprise/${parseName}`;
+    };
+    const enterprises = getEnterprises.map(enterprise => ({
+      ...enterprise,
+      slug: getSlug(enterprise),
+    }));
 
     createPage({
       path: '/',
       component: path.resolve('./src/templates/site-index.js'),
-      context: {},
+      context: {
+        enterprises,
+      },
     });
 
     createPage({
@@ -22,28 +38,17 @@ exports.createPages = ({ graphql, actions }) => {
       component: path.resolve('./src/templates/blog-index.js'),
       context: {
         langKey: 'fr',
+        enterprises,
       },
     });
 
-    enterprises.slice(0, 10).forEach(enterprise => {
-      const getSlug = enterprise => {
-        const parseName = enterprise.name
-          .split(' ')
-          .join('-')
-          .split('.')
-          .join('')
-          .toLowerCase();
-        return `/enterprise/${parseName}`;
-      };
-
+    enterprises.forEach(enterprise => {
       createPage({
         path: getSlug(enterprise),
         component: path.resolve('./src/templates/enterprise-page.js'),
         context: {
-          enterprise: { ...enterprise, slug: getSlug(enterprise) },
-          enterprises: enterprises
-            .slice(0, 10)
-            .map(enterprise => ({ ...enterprise, slug: getSlug(enterprise) })),
+          enterprise,
+          enterprises,
         },
       });
     });
@@ -110,6 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
               next,
               translations,
               translatedLinks: [],
+              enterprises,
             },
           });
         });

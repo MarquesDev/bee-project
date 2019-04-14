@@ -19,6 +19,7 @@ class SiteIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
+    const enterprises = get(this, 'props.pageContext.enterprises');
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -33,7 +34,7 @@ class SiteIndex extends React.Component {
             </MainTitle>
           </Main>
         </Background>
-        <Footer posts={posts} />
+        <Footer posts={posts} enterprises={enterprises} />
       </Layout>
     );
   }

@@ -1,12 +1,9 @@
 {
-  "name": "overreacted",
+  "name": "allo-maya",
   "private": true,
-  "description": "Overreacted",
+  "description": "Allo Maya",
   "version": "1.0.0",
-  "author": "Dan Abramov <dan.abramov@me.com>",
-  "bugs": {
-    "url": "https://github.com/gaearon/overreacted.io/issues"
-  },
+  "author": "Kevin Marques <marques.developpement@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "gatsby": "^2.0.76",
@@ -61,6 +58,7 @@
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,json,css}}'",
     "develop": "gatsby develop",
+    "serve": "gatsby serve",
     "start": "npm run develop",
     "build": "rm -rf public && rm -rf .cache && gatsby build",
     "deploy": "CI=true node scripts/deploy.js --stage production"

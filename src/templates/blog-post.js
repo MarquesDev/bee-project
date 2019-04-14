@@ -21,7 +21,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
-    let { previous, next, slug } = this.props.pageContext;
+    let { previous, next, slug, enterprises } = this.props.pageContext;
     const lang = post.fields.langKey;
 
     return (
@@ -52,7 +52,7 @@ class BlogPostTemplate extends React.Component {
             </article>
           </Main>
         </Background>
-        <Footer posts={posts} />
+        <Footer posts={posts} enterprises={enterprises} />
       </Layout>
     );
   }

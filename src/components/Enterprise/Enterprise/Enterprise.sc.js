@@ -29,9 +29,9 @@ export const Image = styled.div`
   height: 70px;
   border-radius: 50%;
   border: 1px solid ${({ theme }) => theme.colors.grey[100]};
-  background-position: 50%;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   background-image: url(${({ src }) => src});
 `;
 
