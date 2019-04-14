@@ -126,7 +126,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Allo Maya Flux RSS",
+            title: 'Allo Maya Flux RSS',
           },
         ],
       },
@@ -154,5 +154,6 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sitemap`,
   ],
 };
