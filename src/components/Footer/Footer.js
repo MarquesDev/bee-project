@@ -22,6 +22,16 @@ export class Footer extends React.Component {
             })}
           </Column>
           <Column>
+            <Title>Les enterprises</Title>
+            {this.props.enterprises.map(({ name, slug }) => {
+              return (
+                <div key={name}>
+                  <Link href={slug}>{name}</Link>
+                </div>
+              );
+            })}
+          </Column>
+          <Column>
             <Title>À propos</Title>
             <Link href="/rss.xml" target="_blank" rel="noopener noreferrer">
               Flux rss
@@ -32,5 +42,9 @@ export class Footer extends React.Component {
     );
   }
 }
+
+Footer.defaultProps = {
+  enterprises: [],
+};
 
 export default Footer;

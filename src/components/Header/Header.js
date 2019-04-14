@@ -8,9 +8,13 @@ export class Header extends React.Component {
     return (
       <Container>
         <Link to="/">
-          <Logo>ALLO MAYA - BLOG</Logo>
+          <Logo>{this.props.title}</Logo>
         </Link>
       </Container>
     );
   }
 }
+
+Header.defaultProps = {
+  title: 'ALLO MAYA - BLOG',
+};

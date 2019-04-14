@@ -3,6 +3,7 @@ const Promise = require('bluebird');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { supportedLanguages } = require('./i18n');
+const enterprises = require('./src/assets/enterprises.json');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
@@ -22,6 +23,29 @@ exports.createPages = ({ graphql, actions }) => {
       context: {
         langKey: 'fr',
       },
+    });
+
+    enterprises.slice(0, 10).forEach(enterprise => {
+      const getSlug = enterprise => {
+        const parseName = enterprise.name
+          .split(' ')
+          .join('-')
+          .split('.')
+          .join('')
+          .toLowerCase();
+        return `/enterprise/${parseName}`;
+      };
+
+      createPage({
+        path: getSlug(enterprise),
+        component: path.resolve('./src/templates/enterprise-page.js'),
+        context: {
+          enterprise: { ...enterprise, slug: getSlug(enterprise) },
+          enterprises: enterprises
+            .slice(0, 10)
+            .map(enterprise => ({ ...enterprise, slug: getSlug(enterprise) })),
+        },
+      });
     });
 
     resolve(
