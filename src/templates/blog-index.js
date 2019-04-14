@@ -1,7 +1,6 @@
 import { Link, graphql } from 'gatsby';
 import { Background } from '../components/Background';
 import Layout from '../components/Layout/Layout';
-import Panel from '../components/Panel';
 import React from 'react';
 import SEO from '../components/SEO';
 import { Typography } from '../components/Typography/Typography';

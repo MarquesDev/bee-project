@@ -1,7 +1,6 @@
 import { Link, graphql } from 'gatsby';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import Layout from '../components/Layout/Layout';
-import Panel from '../components/Panel';
 import React from 'react';
 import SEO from '../components/SEO';
 import get from 'lodash/get';
