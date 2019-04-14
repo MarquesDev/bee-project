@@ -80,8 +80,8 @@ module.exports = {
               return allMarkdownRemark.edges.map(edge => {
                 const siteUrl = site.siteMetadata.siteUrl;
                 const postText = `
-                <div style="margin-top=55px; font-style: italic;">(This is an article posted to my blog at overreacted.io. You can read it online by <a href="${siteUrl +
-                  edge.node.fields.slug}">clicking here</a>.)</div>
+                <div style="margin-top=55px; font-style: italic;">(C'est un article posté sur allo-maya.fr. Vous pouvez le lire en <a href="${siteUrl +
+                  edge.node.fields.slug}">cliquant ici</a>.)</div>
               `;
 
                 let html = edge.node.html;
@@ -126,7 +126,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Dan Abramov's Overreacted Blog RSS Feed",
+            title: "Allo Maya Flux RSS",
           },
         ],
       },
@@ -134,23 +134,17 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Overreacted`,
-        short_name: `Overreacted`,
+        name: `Allo Maya`,
+        short_name: `Allo Maya`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#ffa7c4`,
+        theme_color: `#000`,
         display: `minimal-ui`,
         icon: `src/assets/icon.png`,
         theme_color_in_head: false,
       },
     },
     `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: 'gatsby-plugin-typography',
-    //   options: {
-    //     pathToConfigModule: 'src/utils/typography',
-    //   },
-    // },
     {
       resolve: 'gatsby-plugin-i18n',
       options: {
