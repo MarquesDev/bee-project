@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+import { parseEnterprise } from '../utils/markup';
 
 const query = graphql`
   query GetSiteMetadata {
@@ -19,7 +20,15 @@ const query = graphql`
   }
 `;
 
-function SEO({ meta, image, title, description, slug, lang = 'en' }) {
+function SEO({
+  meta,
+  image,
+  title,
+  description,
+  slug,
+  lang = 'en',
+  enterprise,
+}) {
   return (
     <StaticQuery
       query={query}
@@ -28,6 +37,8 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
         const metaDescription = description || siteMetadata.description;
         const metaImage = image ? `${siteMetadata.siteUrl}/${image}` : null;
         const url = `${siteMetadata.siteUrl}${slug}`;
+        const enterpriseSchema = enterprise && parseEnterprise(enterprise);
+
         return (
           <Helmet
             htmlAttributes={{ lang: 'fr' }}
@@ -88,7 +99,13 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
                   : []
               )
               .concat(meta)}
-          />
+          >
+            {enterpriseSchema && (
+              <script type="application/ld+json">
+                {JSON.stringify(enterpriseSchema)}
+              </script>
+            )}
+          </Helmet>
         );
       }}
     />

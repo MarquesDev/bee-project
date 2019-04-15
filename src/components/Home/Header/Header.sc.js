@@ -13,7 +13,7 @@ export const Logo = styled.div`
   color: ${({ theme }) => theme.colors.grey[900]};
 `;
 
-export const Links = styled.a`
+export const Links = styled.div`
   display: flex;
   margin-left: auto;
 `;

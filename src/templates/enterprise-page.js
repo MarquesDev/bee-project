@@ -20,7 +20,7 @@ class EnterprisePage extends React.Component {
     return (
       <Layout>
         <Background color="grey">
-          <SEO />
+          <SEO enterprise={enterprise} />
           <Header title="ALLO MAYA" />
           <Main>
             <Enterprise {...enterprise} />
