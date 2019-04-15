@@ -22,8 +22,8 @@ class SiteIndex extends React.Component {
     const enterprises = get(this, 'props.pageContext.enterprises');
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO />
+      <Layout>
+        <SEO showWebsiteMarkup />
         <Background color="grey">
           <Main>
             <Header />

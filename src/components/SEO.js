@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import { parseEnterprise } from '../utils/markup';
+import { parseEnterprise, parseWebsite } from '../utils/markup';
 
 const query = graphql`
   query GetSiteMetadata {
@@ -28,6 +28,7 @@ function SEO({
   slug,
   lang = 'en',
   enterprise,
+  showWebsiteMarkup = false,
 }) {
   return (
     <StaticQuery
@@ -37,7 +38,8 @@ function SEO({
         const metaDescription = description || siteMetadata.description;
         const metaImage = image ? `${siteMetadata.siteUrl}/${image}` : null;
         const url = `${siteMetadata.siteUrl}${slug}`;
-        const enterpriseSchema = enterprise && parseEnterprise(enterprise);
+        const enterpriseMarkup = enterprise && parseEnterprise(enterprise);
+        const websiteMarkup = showWebsiteMarkup && parseWebsite();
 
         return (
           <Helmet
@@ -100,9 +102,21 @@ function SEO({
               )
               .concat(meta)}
           >
-            {enterpriseSchema && (
+            {enterpriseMarkup && (
               <script type="application/ld+json">
-                {JSON.stringify(enterpriseSchema)}
+                {JSON.stringify(enterpriseMarkup)}
+              </script>
+            )}
+
+            {enterpriseMarkup && (
+              <script type="application/ld+json">
+                {JSON.stringify(enterpriseMarkup)}
+              </script>
+            )}
+
+            {websiteMarkup && (
+              <script type="application/ld+json">
+                {JSON.stringify(websiteMarkup)}
               </script>
             )}
           </Helmet>

@@ -10,3 +10,11 @@ export const parseEnterprise = enterprise => ({
     availableLanguage: ['French'],
   })),
 });
+
+export const parseWebsite = () => ({
+  '@context': 'http://schema.org',
+  '@id': 'https://www.allo-maya.fr',
+  '@type': 'WebPage',
+  url: 'https://www.allo-maya.fr',
+  name: 'Allo Maya',
+});
