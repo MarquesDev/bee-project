@@ -26,7 +26,7 @@ function SEO({
   title,
   description,
   slug,
-  lang = 'en',
+  lang = 'fr',
   enterprise,
   showWebsiteMarkup = false,
 }) {
@@ -102,12 +102,6 @@ function SEO({
               )
               .concat(meta)}
           >
-            {enterpriseMarkup && (
-              <script type="application/ld+json">
-                {JSON.stringify(enterpriseMarkup)}
-              </script>
-            )}
-
             {enterpriseMarkup && (
               <script type="application/ld+json">
                 {JSON.stringify(enterpriseMarkup)}

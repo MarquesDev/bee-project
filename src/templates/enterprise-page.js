@@ -7,7 +7,7 @@ import { Typography } from '../components/Typography/Typography';
 import { Article, Main } from '../components/Blog';
 import { Header } from '../components/Header/Header';
 import { Footer } from '../components/Footer/Footer';
-import { Enterprise } from '../components/Enterprise';
+import { Enterprise, OtherEnterprise } from '../components/Enterprise';
 import get from 'lodash/get';
 
 class EnterprisePage extends React.Component {
@@ -20,10 +20,25 @@ class EnterprisePage extends React.Component {
     return (
       <Layout>
         <Background color="grey">
-          <SEO enterprise={enterprise} />
+          <SEO
+            title={enterprise.name}
+            description={enterprise.description}
+            enterprise={enterprise}
+            image={enterprise.logo}
+          />
           <Header title="ALLO MAYA" />
           <Main>
             <Enterprise {...enterprise} />
+            <Typography type="title" variant="3">
+              Entreprises dans la même zone
+            </Typography>
+            {enterprises.map((enterprise, index) => (
+              <OtherEnterprise
+                key={enterprise.name}
+                {...enterprise}
+                margin={index > 0}
+              />
+            ))}
           </Main>
         </Background>
         <Footer posts={posts} enterprises={enterprises} />

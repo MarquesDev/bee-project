@@ -42,13 +42,15 @@ exports.createPages = ({ graphql, actions }) => {
       },
     });
 
-    enterprises.forEach(enterprise => {
+    enterprises.forEach((enterprise, index) => {
       createPage({
         path: getSlug(enterprise),
         component: path.resolve('./src/templates/enterprise-page.js'),
         context: {
           enterprise,
-          enterprises,
+          enterprises: enterprises.filter(
+            ({ name }) => enterprise.name !== name
+          ),
         },
       });
     });
