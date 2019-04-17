@@ -5,32 +5,50 @@ import React from 'react';
 import SEO from '../components/SEO';
 import { Typography } from '../components/Typography/Typography';
 import { Article, Main } from '../components/Blog';
-import { Header } from '../components/Home';
+import { Header } from '../components/Header/Header';
 import { Footer } from '../components/Footer/Footer';
-import { Enterprise, OtherEnterprise } from '../components/Enterprise';
+import {
+  Enterprise,
+  OtherEnterprise,
+  Letter,
+  Letters,
+} from '../components/Enterprise';
 import get from 'lodash/get';
 
 class EnterprisePage extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
+    const footerEnterprises = get(this, 'props.pageContext.footerEnterprises');
     const enterprises = get(this, 'props.pageContext.enterprises');
-    const enterprise = get(this, 'props.pageContext.enterprise');
+    const letters = get(this, 'props.pageContext.letters');
+    const letter = get(this, 'props.pageContext.letter');
 
     return (
       <Layout>
         <Background color="grey">
           <SEO
-            title={enterprise.name}
-            description={enterprise.description}
-            enterprise={enterprise}
-            image={enterprise.logo}
+            title="Liste des entreprises"
+            description={`Trouvez des entreprise d'anti-nuisible dans votre région.
+            Nid de guêpes, rats, pigeons...
+            `}
           />
-          <Header />
+          <Header title="ALLO MAYA" />
           <Main>
-            <Enterprise {...enterprise} />
+            <Letters>
+              {letters.map(({ letter, isActive, hasEnterprises, slug }) => (
+                <Letter
+                  key={letter}
+                  isActive={isActive}
+                  hasEnterprises={hasEnterprises}
+                >
+                  {hasEnterprises && <Link to={slug}>{letter}</Link>}
+                  {!hasEnterprises && letter}
+                </Letter>
+              ))}
+            </Letters>
             <Typography type="title" variant="3">
-              Entreprises dans la même zone
+              Entreprises commençant par la lettre {letter}
             </Typography>
             {enterprises.map((enterprise, index) => (
               <OtherEnterprise
@@ -41,7 +59,7 @@ class EnterprisePage extends React.Component {
             ))}
           </Main>
         </Background>
-        <Footer posts={posts} enterprises={enterprises} />
+        <Footer posts={posts} enterprises={footerEnterprises} />
       </Layout>
     );
   }

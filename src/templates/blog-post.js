@@ -12,7 +12,7 @@ import {
 } from '../utils/i18n';
 import { Content, Main } from '../components/Post';
 import { Typography } from '../components/Typography/Typography';
-import { Header } from '../components/Header/Header';
+import { Header } from '../components/Home';
 import { Footer } from '../components/Footer/Footer';
 import { Background } from '../components/Background';
 

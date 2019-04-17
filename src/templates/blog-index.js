@@ -5,7 +5,7 @@ import React from 'react';
 import SEO from '../components/SEO';
 import { Typography } from '../components/Typography/Typography';
 import { Article, Main } from '../components/Blog';
-import { Header } from '../components/Header/Header';
+import { Header } from '../components/Home';
 import { Footer } from '../components/Footer/Footer';
 import get from 'lodash/get';
 
@@ -18,7 +18,7 @@ class BlogIndexTemplate extends React.Component {
     return (
       <Layout>
         <Background color="grey">
-          <SEO />
+          <SEO title="Blog" />
           <Header />
           <Main>
             {posts.map(({ node }) => {

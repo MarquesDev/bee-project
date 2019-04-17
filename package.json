@@ -40,6 +40,7 @@
     "typography-theme-wordpress-2016": "^0.15.10"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",
     "eslint": "^4.19.1",
@@ -48,6 +49,7 @@
     "gatsby-plugin-styled-components": "^3.0.7",
     "gh-pages": "^1.2.0",
     "inquirer": "^6.2.2",
+    "jest": "^24.7.1",
     "minimist": "^1.2.0",
     "prettier": "^1.14.2"
   },
@@ -61,7 +63,9 @@
     "serve": "gatsby serve",
     "start": "npm run develop",
     "build": "rm -rf public && rm -rf .cache && gatsby build",
-    "deploy": "CI=true node scripts/deploy.js --stage production"
+    "deploy": "CI=true node scripts/deploy.js --stage production",
+    "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest"
   },
   "husky": {
     "hooks": {

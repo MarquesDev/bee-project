@@ -22,4 +22,5 @@ export const Link = styled.a`
   color: ${({ theme }) => theme.colors.grey[800]};
   text-decoration: none;
   font-size: 14px;
+  padding-left: 16px;
 `;

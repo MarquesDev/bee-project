@@ -4,13 +4,16 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { supportedLanguages } = require('./i18n');
 const allEnterprises = require('./src/assets/enterprises.json');
+const {
+  splitEnterprisesByName,
+} = require('./src/utils/split-enterprises-by-name');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js');
-    const getEnterprises = allEnterprises.slice(0, 10);
+    const getEnterprises = allEnterprises.slice(0, 20);
     const getSlug = enterprise => {
       const parseName = enterprise.name
         .split(' ')
@@ -24,6 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
       ...enterprise,
       slug: getSlug(enterprise),
     }));
+    const enterprisesAlphabeticalOrdered = splitEnterprisesByName(enterprises);
 
     createPage({
       path: '/',
@@ -40,6 +44,24 @@ exports.createPages = ({ graphql, actions }) => {
         langKey: 'fr',
         enterprises,
       },
+    });
+
+    enterprisesAlphabeticalOrdered.forEach(letter => {
+      createPage({
+        path: `/entreprises/par-ordre-alphabetique/${letter.letter}`,
+        component: path.resolve('./src/templates/enterprise-index.js'),
+        context: {
+          footerEnterprises: enterprises,
+          enterprises: letter.enterprises,
+          letter: letter.letter,
+          letters: enterprisesAlphabeticalOrdered.map(l => ({
+            letter: l.letter,
+            isActive: l.letter === letter.letter,
+            hasEnterprises: l.enterprises.length > 0,
+            slug: `/entreprises/par-ordre-alphabetique/${l.letter}`,
+          })),
+        },
+      });
     });
 
     enterprises.forEach((enterprise, index) => {
