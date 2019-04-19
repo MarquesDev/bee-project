@@ -11,8 +11,8 @@ export class Header extends React.Component {
           <Logo>ALLO MAYA</Logo>
         </L>
         <Links>
-          <Link href="/entreprises/par-ordre-alphabetique/a">Entreprises</Link>
-          <Link href="/blog">Blog</Link>
+          <Link href="/entreprises/par-ordre-alphabetique/a/">Entreprises</Link>
+          <Link href="/blog/">Blog</Link>
         </Links>
       </Container>
     );

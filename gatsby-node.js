@@ -8,6 +8,21 @@ const {
   splitEnterprisesByName,
 } = require('./src/utils/split-enterprises-by-name');
 
+function removeAccents(str) {
+  let accents =
+    'ÀÁÂÃÄÅàáâãäåßÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+  let accentsOut =
+    'AAAAAAaaaaaaBOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz';
+  str = str.split('');
+  str.forEach((letter, index) => {
+    let i = accents.indexOf(letter);
+    if (i != -1) {
+      str[index] = accentsOut[i];
+    }
+  });
+  return str.join('');
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
@@ -16,12 +31,14 @@ exports.createPages = ({ graphql, actions }) => {
     const getEnterprises = allEnterprises.slice(0, 20);
 
     const getSlug = enterprise => {
-      const parseName = enterprise.name
-        .split(' ')
-        .join('-')
-        .split('.')
-        .join('')
-        .toLowerCase();
+      const parseName = removeAccents(
+        enterprise.name
+          .split(' ')
+          .join('-')
+          .split('.')
+          .join('')
+          .toLowerCase()
+      );
       return `/entreprise/${parseName}/`;
     };
     const enterprises = getEnterprises.map(enterprise => ({
