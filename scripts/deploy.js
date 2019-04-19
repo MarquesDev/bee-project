@@ -47,17 +47,27 @@ const execWithCompressionHtml = stage => () =>
 const execWithCompressionSW = stage => () =>
   new Promise((resolve, reject) => {
     const url = getUrl(stage);
-    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --exclude '*' --include '*-worker.js' --content-encoding=gzip --cache-control max-age=0`;
+    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --exclude '*' --include '*-worker.js' --cache-control max-age=0`;
     return exec(command, (error, stdout, stderr) => {
       if (error) return reject(error);
       return resolve();
     });
   });
 
-const execAllWithoutCompression = stage => () =>
+const execAllWithCompression = stage => () =>
   new Promise((resolve, reject) => {
     const url = getUrl(stage);
-    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --cache-control max-age=0`;
+    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --exclude 'manifest.webmanifest' --cache-control max-age=0`;
+    return exec(command, (error, stdout, stderr) => {
+      if (error) return reject(error);
+      return resolve();
+    });
+  });
+
+const execOnlyManifest = stage => () =>
+  new Promise((resolve, reject) => {
+    const url = getUrl(stage);
+    const command = `aws s3 sync ./public s3://${url} --acl public-read --region=eu-west-3 --include 'manifest.webmanifest' --exclude '*' --cache-control max-age=0`;
     return exec(command, (error, stdout, stderr) => {
       if (error) return reject(error);
       return resolve();
@@ -98,10 +108,9 @@ const runWithoutConfirm = () => run(argv.stage).then(() => process.exit());
 
 const run = stage => {
   log(`Deployment started to ${stage}`)();
-  return execWithoutCompression(stage)()
-    .then(log('Static contents without compression'))
-    .then(execAllWithoutCompression(stage));
-  // .then(log("Static contents without compression successfully deployed"))
+  return execAllWithCompression(stage)()
+    .then(log("Deploy only manifest"))
+    .then(execOnlyManifest(stage));
   // .then(execWithCompression(stage))
   // .then(log("Static contents with compression successfully deployed"))
   // .then(execWithCompressionSW(stage))
