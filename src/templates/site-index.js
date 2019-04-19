@@ -24,7 +24,11 @@ class SiteIndex extends React.Component {
 
     return (
       <Layout>
-        <SEO showWebsiteMarkup slug={href} />
+        <SEO
+          showWebsiteMarkup
+          slug={href}
+          title="Allo Maya - Dératisation - Désinsectisation"
+        />
         <Background color="grey">
           <Main>
             <Header />

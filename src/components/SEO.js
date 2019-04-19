@@ -47,7 +47,7 @@ function SEO({
             htmlAttributes={{ lang: 'fr' }}
             {...(title
               ? {
-                  titleTemplate: `%s — ${siteMetadata.title}`,
+                  titleTemplate: `%s`,
                   title,
                 }
               : {

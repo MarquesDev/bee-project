@@ -19,7 +19,10 @@ class BlogIndexTemplate extends React.Component {
     return (
       <Layout>
         <Background color="grey">
-          <SEO title="Blog" slug={href} />
+          <SEO
+            title="Blog -- Apprenez à vous débarasser des nuisibles"
+            slug={href}
+          />
           <Header />
           <Main>
             {posts.map(({ node }) => {

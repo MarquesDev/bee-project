@@ -23,7 +23,9 @@ class EnterprisePage extends React.Component {
         <Background color="grey">
           <SEO
             slug={href}
-            title={enterprise.name}
+            title={
+              enterprise.name + ' : entreprise qui vous débarasse des nuisibles'
+            }
             description={enterprise.description}
             enterprise={enterprise}
             image={enterprise.logo}

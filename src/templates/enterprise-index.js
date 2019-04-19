@@ -30,10 +30,8 @@ class EnterprisePage extends React.Component {
         <Background color="grey">
           <SEO
             slug={href}
-            title="Liste des entreprises"
-            description={`Trouvez des entreprise d'anti-nuisible dans votre région.
-            Nid de guêpes, rats, pigeons...
-            `}
+            title="Trouvez des entreprise d'anti-nuisible dans votre région. Classés par ordre alphabétique -- Allo Maya"
+            description={`Trouvez des entreprise d'anti-nuisible dans votre région. Nid de guêpes, rats, pigeons...`}
           />
           <Header title="ALLO MAYA" />
           <Main>
