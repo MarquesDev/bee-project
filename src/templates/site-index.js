@@ -20,10 +20,11 @@ class SiteIndex extends React.Component {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const enterprises = get(this, 'props.pageContext.enterprises');
+    const href = get(this, 'props.pageContext.href');
 
     return (
       <Layout>
-        <SEO showWebsiteMarkup />
+        <SEO showWebsiteMarkup slug={href} />
         <Background color="grey">
           <Main>
             <Header />

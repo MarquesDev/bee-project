@@ -16,11 +16,13 @@ class EnterprisePage extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const enterprises = get(this, 'props.pageContext.enterprises');
     const enterprise = get(this, 'props.pageContext.enterprise');
+    const href = get(this, 'props.pageContext.href');
 
     return (
       <Layout>
         <Background color="grey">
           <SEO
+            slug={href}
             title={enterprise.name}
             description={enterprise.description}
             enterprise={enterprise}

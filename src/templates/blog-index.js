@@ -14,11 +14,12 @@ class BlogIndexTemplate extends React.Component {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const enterprises = get(this, 'props.pageContext.enterprises');
+    const href = get(this, 'props.pageContext.href');
 
     return (
       <Layout>
         <Background color="grey">
-          <SEO title="Blog" />
+          <SEO title="Blog" slug={href} />
           <Header />
           <Main>
             {posts.map(({ node }) => {

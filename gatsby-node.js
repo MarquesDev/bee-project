@@ -14,6 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js');
     const getEnterprises = allEnterprises.slice(0, 20);
+
     const getSlug = enterprise => {
       const parseName = enterprise.name
         .split(' ')
@@ -21,7 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
         .split('.')
         .join('')
         .toLowerCase();
-      return `/entreprise/${parseName}`;
+      return `/entreprise/${parseName}/`;
     };
     const enterprises = getEnterprises.map(enterprise => ({
       ...enterprise,
@@ -34,6 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
       component: path.resolve('./src/templates/site-index.js'),
       context: {
         enterprises,
+        href: '/',
       },
     });
 
@@ -43,17 +45,19 @@ exports.createPages = ({ graphql, actions }) => {
       context: {
         langKey: 'fr',
         enterprises,
+        href: '/blog',
       },
     });
 
     enterprisesAlphabeticalOrdered.forEach(letter => {
       createPage({
-        path: `/entreprises/par-ordre-alphabetique/${letter.letter}`,
+        path: `/entreprises/par-ordre-alphabetique/${letter.letter}/`,
         component: path.resolve('./src/templates/enterprise-index.js'),
         context: {
           footerEnterprises: enterprises,
           enterprises: letter.enterprises,
           letter: letter.letter,
+          href: `/entreprises/par-ordre-alphabetique/${letter.letter}`,
           letters: enterprisesAlphabeticalOrdered.map(l => ({
             letter: l.letter,
             isActive: l.letter === letter.letter,
@@ -69,6 +73,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: getSlug(enterprise),
         component: path.resolve('./src/templates/enterprise-page.js'),
         context: {
+          href: getSlug(enterprise),
           enterprise,
           enterprises: enterprises.filter(
             ({ name }) => enterprise.name !== name
@@ -135,6 +140,7 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogPost,
             context: {
               slug: post.node.fields.slug,
+              href: post.node.fields.slug,
               previous,
               next,
               translations,

@@ -21,6 +21,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
+    const href = get(this, 'props.pageContext.href');
     let { previous, next, slug, enterprises } = this.props.pageContext;
     const lang = post.fields.langKey;
 
@@ -31,6 +32,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.spoiler}
           slug={post.fields.slug}
+          slug={href}
         />
         <Background color="grey">
           <Header />

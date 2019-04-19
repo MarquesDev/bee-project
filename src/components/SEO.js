@@ -29,6 +29,7 @@ function SEO({
   lang = 'fr',
   enterprise,
   showWebsiteMarkup = false,
+  actualUrl,
 }) {
   return (
     <StaticQuery
@@ -113,6 +114,8 @@ function SEO({
                 {JSON.stringify(websiteMarkup)}
               </script>
             )}
+
+            {url && <link rel="canonical" href={url} />}
           </Helmet>
         );
       }}

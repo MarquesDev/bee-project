@@ -23,11 +23,13 @@ class EnterprisePage extends React.Component {
     const enterprises = get(this, 'props.pageContext.enterprises');
     const letters = get(this, 'props.pageContext.letters');
     const letter = get(this, 'props.pageContext.letter');
+    const href = get(this, 'props.pageContext.href');
 
     return (
       <Layout>
         <Background color="grey">
           <SEO
+            slug={href}
             title="Liste des entreprises"
             description={`Trouvez des entreprise d'anti-nuisible dans votre région.
             Nid de guêpes, rats, pigeons...
