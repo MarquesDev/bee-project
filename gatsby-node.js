@@ -74,12 +74,12 @@ exports.createPages = ({ graphql, actions }) => {
           footerEnterprises: enterprises,
           enterprises: letter.enterprises,
           letter: letter.letter,
-          href: `/entreprises/par-ordre-alphabetique/${letter.letter}`,
+          href: `/entreprises/par-ordre-alphabetique/${letter.letter}/`,
           letters: enterprisesAlphabeticalOrdered.map(l => ({
             letter: l.letter,
             isActive: l.letter === letter.letter,
             hasEnterprises: l.enterprises.length > 0,
-            slug: `/entreprises/par-ordre-alphabetique/${l.letter}`,
+            slug: `/entreprises/par-ordre-alphabetique/${l.letter}/`,
           })),
         },
       });
