@@ -5,7 +5,7 @@ import React from 'react';
 import SEO from '../components/SEO';
 import { Typography } from '../components/Typography/Typography';
 import { Article, Main } from '../components/Blog';
-import { Header } from '../components/Header/Header';
+import { Header } from '../components/Home';
 import { Footer } from '../components/Footer/Footer';
 import {
   Enterprise,
@@ -33,7 +33,7 @@ class EnterprisePage extends React.Component {
             title="Trouvez des entreprise d'anti-nuisible dans votre région. Classés par ordre alphabétique -- Allo Maya"
             description={`Trouvez des entreprise d'anti-nuisible dans votre région. Nid de guêpes, rats, pigeons...`}
           />
-          <Header title="ALLO MAYA" />
+          <Header />
           <Main>
             <Letters>
               {letters.map(({ letter, isActive, hasEnterprises, slug }) => (

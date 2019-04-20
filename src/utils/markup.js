@@ -5,7 +5,7 @@ export const parseEnterprise = enterprise => ({
   logo: enterprise.logo,
   contactPoint: enterprise.phoneNumbers.map(number => ({
     '@type': 'ContactPoint',
-    telephone: `+33${number}`,
+    telephone: number,
     contactType: 'customer service',
     availableLanguage: ['French'],
   })),

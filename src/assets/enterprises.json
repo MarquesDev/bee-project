@@ -43,7 +43,11 @@
     "city": "74800 SAINT-LAURENT",
     "street": "20, Chemin de la Tiolire",
     "description": "INTERVIENT SUR TOUTE LA HAUTE-SAVOIE\nProfessionnel depuis 1999\nTravail sérieux et sécurisé\nIntervention rapide",
-    "phoneNumbers": ["04.50.25.02.85", "06.08.34.50.61", "04.50.25.02.85"],
+    "phoneNumbers": [
+      "+33-4-50-25-02-85",
+      "+33-6-08-34-50-61",
+      "+33-4-50-25-02-85"
+    ],
     "countries": ["Ain (01)", "Haute-Savoie (74)", "Savoie (73)"]
   },
   {
