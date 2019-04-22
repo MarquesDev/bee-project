@@ -19,11 +19,11 @@ class EnterprisePage extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
-    const footerEnterprises = get(this, 'props.pageContext.footerEnterprises');
     const enterprises = get(this, 'props.pageContext.enterprises');
     const letters = get(this, 'props.pageContext.letters');
     const letter = get(this, 'props.pageContext.letter');
     const href = get(this, 'props.pageContext.href');
+    const regions = get(this, 'props.pageContext.regions');
 
     return (
       <Layout>
@@ -59,7 +59,7 @@ class EnterprisePage extends React.Component {
             ))}
           </Main>
         </Background>
-        <Footer posts={posts} enterprises={footerEnterprises} />
+        <Footer posts={posts} regions={regions} />
       </Layout>
     );
   }

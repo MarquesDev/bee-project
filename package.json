@@ -61,6 +61,7 @@
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,json,css}}'",
     "develop": "gatsby develop",
+    "debug": "node --inspect node_modules/.bin/gatsby develop",
     "serve": "gatsby serve",
     "start": "npm run develop",
     "build": "rm -rf public && rm -rf .cache && gatsby build",
@@ -77,6 +78,11 @@
     "{gatsby-*.js,src/**/*.{js,jsx,json,css}}": [
       "yarn format",
       "git add"
+    ]
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.test.js"
     ]
   }
 }

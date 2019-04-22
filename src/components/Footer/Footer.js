@@ -23,7 +23,7 @@ export class Footer extends React.Component {
           </Column>
           <Column>
             <Title>Les enterprises</Title>
-            {this.props.enterprises.map(({ name, slug }) => {
+            {this.props.regions.map(({ name, slug }) => {
               return (
                 <div key={name}>
                   <Link href={slug}>{name}</Link>
@@ -44,7 +44,8 @@ export class Footer extends React.Component {
 }
 
 Footer.defaultProps = {
-  enterprises: [],
+  regions: [],
+  posts: [],
 };
 
 export default Footer;

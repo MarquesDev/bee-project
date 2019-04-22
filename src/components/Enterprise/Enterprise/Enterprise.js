@@ -81,7 +81,7 @@ export class Enterprise extends React.Component {
 
           <InfoBlock
             label="Villes d'intervention"
-            value={this.props.countries.join(' - ')}
+            value={this.props.countries.map(({ name }) => name).join(' - ')}
           />
         </Container>
       </>

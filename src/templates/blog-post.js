@@ -22,6 +22,7 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const href = get(this, 'props.pageContext.href');
+    const regions = get(this, 'props.pageContext.regions');
     let { previous, next, slug, enterprises } = this.props.pageContext;
     const lang = post.fields.langKey;
 
@@ -54,7 +55,7 @@ class BlogPostTemplate extends React.Component {
             </article>
           </Main>
         </Background>
-        <Footer posts={posts} enterprises={enterprises} />
+        <Footer posts={posts} regions={regions} />
       </Layout>
     );
   }

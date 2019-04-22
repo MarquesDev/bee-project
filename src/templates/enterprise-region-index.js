@@ -7,35 +7,32 @@ import { Typography } from '../components/Typography/Typography';
 import { Article, Main } from '../components/Blog';
 import { Header } from '../components/Home';
 import { Footer } from '../components/Footer/Footer';
-import { Enterprise, OtherEnterprise } from '../components/Enterprise';
+import {
+  Enterprise,
+  OtherEnterprise,
+  Letter,
+  Letters,
+} from '../components/Enterprise';
 import get from 'lodash/get';
 
-class EnterprisePage extends React.Component {
+class EnterprisesByRegionIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const enterprises = get(this, 'props.pageContext.enterprises');
-    const enterprise = get(this, 'props.pageContext.enterprise');
-    const href = get(this, 'props.pageContext.href');
+    const regionName = get(this, 'props.pageContext.regionName');
     const regions = get(this, 'props.pageContext.regions');
+    const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
     return (
       <Layout>
         <Background color="grey">
           <SEO
-            slug={href}
-            title={
-              enterprise.name + ' : entreprise qui vous débarasse des nuisibles'
-            }
-            description={enterprise.description}
-            enterprise={enterprise}
-            image={enterprise.logo}
+            title={`Trouvez des entreprise d'anti-nuisible dans votre région, ici la région de ${regionName} -- Allo Maya`}
+            description={`Trouvez des entreprise d'anti-nuisible dans votre région. Nid de guêpes, rats, pigeons...`}
           />
           <Header />
           <Main>
-            <Enterprise {...enterprise} />
-            <Typography type="title" variant="3">
-              Entreprises dans la même zone
+            <Typography as="h1" type="title" variant="3">
+              Entreprises de la region {regionName}
             </Typography>
             {enterprises.map((enterprise, index) => (
               <OtherEnterprise
@@ -52,7 +49,7 @@ class EnterprisePage extends React.Component {
   }
 }
 
-export default EnterprisePage;
+export default EnterprisesByRegionIndex;
 
 export const pageQuery = graphql`
   query {

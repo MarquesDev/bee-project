@@ -7,6 +7,9 @@ const allEnterprises = require('./src/assets/enterprises.json');
 const {
   splitEnterprisesByName,
 } = require('./src/utils/split-enterprises-by-name');
+const {
+  splitEnterprisesByRegion,
+} = require('./src/utils/split-enterprises-by-region');
 
 function removeAccents(str) {
   let accents =
@@ -41,11 +44,25 @@ exports.createPages = ({ graphql, actions }) => {
       );
       return `/entreprise/${parseName}/`;
     };
+    const getSlugRegion = region => {
+      const parseName = removeAccents(
+        region.name.replace(/ \([0-9]+\)/gi, '').toLowerCase()
+      );
+      return `/entreprises/par-region/${parseName}/`;
+    };
     const enterprises = getEnterprises.map(enterprise => ({
       ...enterprise,
       slug: getSlug(enterprise),
     }));
+
     const enterprisesAlphabeticalOrdered = splitEnterprisesByName(enterprises);
+    const getEnterprisesByRegion = splitEnterprisesByRegion(enterprises);
+    const regionFilterByEnterprises = getEnterprisesByRegion
+      .filter(({ enterprises }) => enterprises.length > 0)
+      .map(region => ({
+        ...region,
+        slug: getSlugRegion(region),
+      }));
 
     createPage({
       path: '/',
@@ -53,6 +70,7 @@ exports.createPages = ({ graphql, actions }) => {
       context: {
         enterprises,
         href: '/',
+        regions: regionFilterByEnterprises,
       },
     });
 
@@ -63,6 +81,7 @@ exports.createPages = ({ graphql, actions }) => {
         langKey: 'fr',
         enterprises,
         href: '/blog',
+        regions: regionFilterByEnterprises,
       },
     });
 
@@ -81,6 +100,19 @@ exports.createPages = ({ graphql, actions }) => {
             hasEnterprises: l.enterprises.length > 0,
             slug: `/entreprises/par-ordre-alphabetique/${l.letter}/`,
           })),
+          regions: regionFilterByEnterprises,
+        },
+      });
+    });
+
+    regionFilterByEnterprises.forEach((region, index) => {
+      createPage({
+        path: getSlugRegion(region),
+        component: path.resolve('./src/templates/enterprise-region-index.js'),
+        context: {
+          enterprises: region.enterprises,
+          regionName: region.name,
+          regions: regionFilterByEnterprises,
         },
       });
     });
@@ -91,6 +123,7 @@ exports.createPages = ({ graphql, actions }) => {
         component: path.resolve('./src/templates/enterprise-page.js'),
         context: {
           href: getSlug(enterprise),
+          regions: regionFilterByEnterprises,
           enterprise,
           enterprises: enterprises.filter(
             ({ name }) => enterprise.name !== name
@@ -158,6 +191,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.node.fields.slug,
               href: post.node.fields.slug,
+              regions: regionFilterByEnterprises,
               previous,
               next,
               translations,

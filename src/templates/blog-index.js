@@ -15,6 +15,7 @@ class BlogIndexTemplate extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const enterprises = get(this, 'props.pageContext.enterprises');
     const href = get(this, 'props.pageContext.href');
+    const regions = get(this, 'props.pageContext.regions');
 
     return (
       <Layout>
@@ -40,7 +41,7 @@ class BlogIndexTemplate extends React.Component {
             })}
           </Main>
         </Background>
-        <Footer posts={posts} enterprises={enterprises} />
+        <Footer posts={posts} regions={regions} />
       </Layout>
     );
   }
