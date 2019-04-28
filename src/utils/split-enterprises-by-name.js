@@ -1,10 +1,12 @@
 function getAllLetters() {
   const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  return letters.reduce(
-    (accumulator, value) =>
-      accumulator.set(value, { letter: value, enterprises: [] }),
-    new Map()
-  );
+  return letters
+    .concat('autre')
+    .reduce(
+      (accumulator, value) =>
+        accumulator.set(value, { letter: value, enterprises: [] }),
+      new Map()
+    );
 }
 
 function getFirstLetter(name) {
@@ -14,7 +16,7 @@ function getFirstLetter(name) {
 function splitEnterprisesByName(enterprises) {
   const objectMap = enterprises.reduce((accumulator, value) => {
     const key = getFirstLetter(value.name);
-    const v = accumulator.get(key);
+    const v = accumulator.get(key) || accumulator.get('autre');
     accumulator.set(key, { ...v, enterprises: [...v.enterprises, value] });
     return accumulator;
   }, getAllLetters());

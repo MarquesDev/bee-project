@@ -31,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js');
-    const getEnterprises = allEnterprises.slice(0, 20);
+    const getEnterprises = allEnterprises.slice(0, 40);
 
     const getSlug = enterprise => {
       const parseName = removeAccents(
