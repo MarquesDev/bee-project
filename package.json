@@ -40,6 +40,13 @@
     "typography-theme-wordpress-2016": "^0.15.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@storybook/addon-actions": "^5.0.10",
+    "@storybook/addon-links": "^5.0.10",
+    "@storybook/addons": "^5.0.10",
+    "@storybook/cli": "^5.0.10",
+    "@storybook/react": "^5.0.10",
+    "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",
@@ -67,7 +74,9 @@
     "build": "rm -rf public && rm -rf .cache && gatsby build",
     "deploy": "CI=true node scripts/deploy.js --stage production",
     "test": "jest",
-    "test:debug": "node --inspect node_modules/.bin/jest"
+    "test:debug": "node --inspect node_modules/.bin/jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
