@@ -75,12 +75,12 @@ exports.createPages = ({ graphql, actions }) => {
     });
 
     createPage({
-      path: '/blog',
+      path: '/blog/',
       component: path.resolve('./src/templates/blog-index.js'),
       context: {
         langKey: 'fr',
         enterprises,
-        href: '/blog',
+        href: '/blog/',
         regions: regionFilterByEnterprises,
       },
     });
